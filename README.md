@@ -34,3 +34,16 @@
 | ------- | -------------- | ----- | -------- | ------------------------------------- |
 | integer | text           | text  | text     | text                                  |
 | 1       | Tantallon Oval | img   | img(src) | https://goo.gl/maps/LtKG6q5zpXy27U7f7 |
+
+Players
+t.text :first_name
+t.text :last_name
+t.text :role
+t.string :grade
+t.text :suburb
+t.text :bio
+t.text :profile_image
+t.text :banner_photo
+t.text :email
+t.string :password_digest
+t.integer :team_id
