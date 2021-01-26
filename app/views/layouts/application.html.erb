@@ -10,6 +10,25 @@
   </head>
 
   <body>
+    <nav>
+    <%= link_to 'Home', root_path %>
+    <%# User logged in %>
+    <% if @current_user.present? %>
+      <% if @current_user.admin? %>
+        <%= link_to "Users", users_path %>
+      <% end %>
+    
+      <%= link_to "Logout #{@current_user.email }", login_path, :method => "delete" %>
+
+    <% else %>
+      <%= link_to 'Player Sign Up', new_player_path %>
+      <%= link_to 'Team Sign Up', new_team_path %>
+      <%= link_to 'Login', login_path %>
+    <% end %>
+  </nav>
     <%= yield %>
+
+
+
   </body>
 </html>

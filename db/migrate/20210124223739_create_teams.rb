@@ -6,7 +6,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.text :banner_photo
       t.string :grade
       t.integer :suburb
-      t.integer :player_limit
+      t.integer :player_limit, :default => 20 
 
       t.timestamps
     end

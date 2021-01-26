@@ -1,2 +1,32 @@
-<h1>Teams#edit</h1>
-<p>Find me in app/views/teams/edit.html.erb</p>
+<h1>Almost there</h1>
+
+
+<% if @team.errors.any? %>
+    <% @team.errors.full_messages.each do |msg| %>
+      <div class="error-container">
+        <ul>
+            <li><%= msg %></li>
+        </ul>
+      </div>
+    <% end %>
+<% end %>
+
+<%= form_for @team do |f| %>
+  
+  <%= f.label :name, "Team Name", :autofocus => true, :required => true %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :grade %>
+  <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
+
+  <%= f.label :suburb %>
+  <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
+  
+  <%= f.label(:logo, "Team Logo")  %>
+  <%= f.text_field(:logo) %>
+
+  <%= f.label(:logo, "Banner Photo")  %>
+  <%= f.text_field(:banner_photo) %>
+
+    <%= f.submit("Register") %>
+<% end %>

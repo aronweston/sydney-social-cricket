@@ -2,6 +2,7 @@
 
 <% if @current_user.present? %>
     <h2>Welcome back <%= @current_user.email %></h2>
+    <h2><%= @current_user.user_role %></h2>
 <% end %>
 
 <h3>Players</h3>
@@ -29,5 +30,5 @@
     <% end %>
 </ul>
 
-<%= link_to("Register as a player", new_player_path)%>
-<%= link_to("Register as a team", new_team_path)%>
+
+

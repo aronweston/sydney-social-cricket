@@ -1,0 +1,35 @@
+<h1>Users</h1>
+
+<table class="u-full-width">
+    <thead>
+        <tr>
+            <th>Players</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @players.each do |player|  %>
+        <tr>
+            <td><%= player.first_name %> <%= player.last_name %> / <%= player.email %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+
+
+<table class="u-full-width">
+    <thead>
+        <tr>
+            <th>Teams</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @teams.each do |team|  %>
+        <tr>
+            <td><%= team.name %> / <%= team.email %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+

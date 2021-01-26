@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
     before_action :fetch_user
 
     private
-
     def fetch_user 
         team = Team.find_by :id => session[:user_id]
         player = Player.find_by :id => session[:user_id]

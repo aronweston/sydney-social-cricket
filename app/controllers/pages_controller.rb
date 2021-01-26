@@ -5,4 +5,10 @@ class PagesController < ApplicationController
     @teams = Team.all
     @grounds = Ground.all
   end
+
+  def users
+    @players = Player.all
+    @teams = Team.all 
+  end
+
 end
