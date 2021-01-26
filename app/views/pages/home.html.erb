@@ -1,0 +1,33 @@
+<h1>Welcome to Sydney Social Cricket</h1>
+
+<% if @current_user.present? %>
+    <h2>Welcome back <%= @current_user.email %></h2>
+<% end %>
+
+<h3>Players</h3>
+<ul>
+    <% @players.each do |player| %>
+    <span><%= player.first_name %> <%= player.last_name %></span>
+    <li>Grade: <%= player.grade %></li>
+    <li>Role: <%= player.role %></li>
+    <li>Suburb: <%= player.suburb %></li>
+    <br>
+    <% end %>
+</ul>
+
+<h3>Teams</h3>
+<ul>
+    <% @teams.each do |team| %>
+    <li><%= team.name %></li>
+    <% end %>
+</ul>
+
+<h3>Grounds</h3>
+<ul>
+    <% @grounds.each do |ground| %>
+    <li><%= ground.name %> </li>
+    <% end %>
+</ul>
+
+<%= link_to("Register as a player", new_player_path)%>
+<%= link_to("Register as a team", new_team_path)%>

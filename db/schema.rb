@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_235622) do
+ActiveRecord::Schema.define(version: 2021_01_25_234039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_235622) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_role", default: "player"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -59,6 +60,9 @@ ActiveRecord::Schema.define(version: 2021_01_24_235622) do
     t.integer "player_limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.text "email"
+    t.string "user_role", default: "team"
   end
 
 end
