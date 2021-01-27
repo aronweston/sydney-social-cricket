@@ -1,18 +1,3 @@
 <h1>Games#new</h1>
 
-<%= form_for @game do |f| %>
-
-    <%= f.label :date %>
-    <%= f.date_select :date %>
-
-    <%= f.label :team1_id, "Home Team" %>
-    <%= f.select :team1_id, Team.pluck(:name, :id) %>
-
-    <%= f.label :team2_id, "Away Team" %>
-    <%= f.select :team2_id, Team.pluck(:name, :id)  %>
-
-    <%= f.label :ground_id, "Ground" %>
-    <%= f.select :ground_id, Ground.pluck(:name, :id) %>
-
-
-<% end %>
+<%= render "games/form" %>

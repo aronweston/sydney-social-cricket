@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
   def profile_update
     player = Player.find params[:id]
     player.update add_profile_params
+    session[:user_id] = player.id
     redirect_to root_path 
   end 
 
@@ -28,7 +29,6 @@ class PlayersController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -37,7 +37,6 @@ class PlayersController < ApplicationController
 
   def update
   end
-
 
   private
   def player_params

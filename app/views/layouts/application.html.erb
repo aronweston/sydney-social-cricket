@@ -14,12 +14,28 @@
     <%= link_to 'Home', root_path %>
     <%# User logged in %>
     <% if @current_user.present? %>
+    <!-- Admin -->
       <% if @current_user.admin? %>
         <%= link_to "Users", users_path %>
+        <%= link_to "Create a ground", new_ground_path %>
       <% end %>
-    
-      <%= link_to "Logout #{@current_user.email }", login_path, :method => "delete" %>
+      <!-- Everyone -->
+      <%= link_to "Teams", teams_path %>
+      <%= link_to "Players", players_path %>
+      <%= link_to "Grounds", grounds_path %>
+      
+      <!-- Teams -->
+      <% if @current_user.user_role == "team" %>
+          <%= link_to("Your Profile", team_path(@current_user)) %>
+          <%= link_to("Create a game", new_game_path) %>
+      <% else %>
+          <%= link_to("Your Profile", player_path(@current_user)) %>
+      <% end %>
 
+
+
+      <!-- Logout -->
+      <%= link_to "Logout #{@current_user.email}", login_path, :method => "delete" %>
     <% else %>
       <%= link_to 'Player Sign Up', new_player_path %>
       <%= link_to 'Team Sign Up', new_team_path %>

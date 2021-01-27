@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :check_for_login
+
   def index
     @games = Game.all
   end
@@ -8,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   def edit 
-    @game =Ggame.find params[:id]
+    @game = Game.find params[:id]
   end 
 
   def create
@@ -23,5 +25,10 @@ class GamesController < ApplicationController
   def show
     @game = Game.find params[:id]
   end 
+
+  private 
+  def game_params
+    params.require(:game).permit(:date, :ground_id, :team1_id, :team2_id)
+  end
 
 end

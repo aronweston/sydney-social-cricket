@@ -1,0 +1,22 @@
+<h1>Almost there</h1>
+
+<%= form_for @team, url: team_update_profile_path(@team) do |f| %>
+
+  <%= f.label :name, "Team Name", :autofocus => true, :required => true %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :grade %>
+  <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
+
+  <%= f.label :suburb %>
+  <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
+  
+  <%= f.label(:logo, "Team Logo")  %>
+  <%= f.text_field(:logo) %>
+
+  <%= f.label(:logo, "Banner Photo")  %>
+  <%= f.text_field(:banner_photo) %>
+  
+  <%= f.submit("Register") %>
+
+<% end %>

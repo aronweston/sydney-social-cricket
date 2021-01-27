@@ -20,10 +20,10 @@ g3 = Ground.create :name => "Gore Hill Oval", :address => "209 Pacific Hwy, St L
 puts "#{Ground.count} grounds."
 
 
-# Game.destroy_all 
-# m1 = Game.create :team1_id => 86, :team2_id => 89, :ground_id => 55, :date => "2021-01-27"
-# m2 = Game.create :team1_id => 86, :team2_id => 89, :ground_id => 56, :date => "2021-05-03"
-# puts "#{Game.count} games."
+Game.destroy_all 
+m1 = Game.create :team1_id => 86, :team2_id => 89, :ground_id => 55, :date => "2021-01-27"
+m2 = Game.create :team1_id => 86, :team2_id => 89, :ground_id => 56, :date => "2021-05-03"
+puts "#{Game.count} games."
 
 # Assocaitons 
 

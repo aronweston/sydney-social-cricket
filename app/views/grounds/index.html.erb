@@ -1,2 +1,7 @@
-<h1>Grounds#index</h1>
-<p>Find me in app/views/grounds/index.html.erb</p>
+<h1>All Grounds</h1>
+
+<% @grounds.each do |ground| %>
+  <p><%= ground.name %></p>
+  <p><%= link_to("Edit Ground", edit_ground_path(ground)) %></p>
+  <%= button_to 'Delete Ground', ground, :method => 'delete' %>
+<% end %>

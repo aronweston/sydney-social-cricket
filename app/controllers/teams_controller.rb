@@ -1,4 +1,16 @@
 class TeamsController < ApplicationController
+ 
+  def add_profile
+    @team = Team.find params[:id]
+  end
+
+  def profile_update
+    team = Team.find params[:id]
+    team.update add_profile_params
+    session[:user_id] = team.id
+    redirect_to root_path
+  end 
+
   def index
     @teams = Team.all
   end
@@ -8,7 +20,6 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    @team = Team.find params[:id]
   end 
 
   def show
@@ -18,24 +29,25 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new team_params
     if @team.save
-      redirect_to edit_team_path(@team)
+      redirect_to team_add_profile_path(@team)
     else
       render :new
     end
   end
   
   def update
-    team = Team.find params[:id]
-    team.update second_stage_params
-    redirect_to root_path
   end
- 
+  
+  def destroy
+  end
 
   private
   def team_params
     params.require(:team).permit(:email, :password, :password_confirmation)
   end
-  def second_stage_params
+
+  def add_profile_params
     params.require(:team).permit(:name, :grade, :suburb, :logo, :banner_photo)
   end
+
 end

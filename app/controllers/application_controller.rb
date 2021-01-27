@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
         end 
     end 
 
-    
     def fetch_team
         @current_user = Team.find_by :id => session[:user_id] if session[:user_id].present?
         session[:user_id] = nil unless @current_user.present?    
@@ -24,4 +23,12 @@ class ApplicationController < ActionController::Base
         session[:user_id] = nil unless @current_user.present?    
     end
    
+    def check_for_login
+        redirect_to root_path unless @current_user.present? && @current_user.user_role == "team"
+    end
+
+    def check_for_admin
+        redirect_to root_path unless @current_user.present? && @current_user.admin?
+    end
+
 end

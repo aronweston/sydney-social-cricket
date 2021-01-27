@@ -1,2 +1,10 @@
-<h1>Players#index</h1>
-<p>Find me in app/views/players/index.html.erb</p>
+<h1>Players</h1>
+
+<% @players.each do |player| %>
+  <p><%= player.first_name %> <%= player.last_name %></p>
+  <% unless player.team.nil? %>
+    <p><%= player.team.name %></p>
+    <%= link_to("Team", team_path(player.team_id)) %>
+  <% end %>
+  <%= link_to("Profile", players_path(player))  %>
+<% end %>
