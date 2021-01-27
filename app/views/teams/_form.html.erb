@@ -1,6 +1,4 @@
-<h1>Almost there</h1>
-
-<%= form_for @team, url: team_update_profile_path(@team) do |f| %>
+<%= form_for @team do |f| %>
 
   <%= f.label :name, "Team Name", :autofocus => true, :required => true %>
   <%= f.text_field :name %>
@@ -11,15 +9,12 @@
   <%= f.label :suburb %>
   <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
   
-  <%= f.label :bio %>
-  <%= f.text_area(:bio, :cols => 10, :rows => 10) %>
-  
   <%= f.label(:logo, "Team Logo")  %>
   <%= f.text_field(:logo) %>
 
   <%= f.label(:logo, "Banner Photo")  %>
   <%= f.text_field(:banner_photo) %>
   
-  <%= f.submit("Register") %>
+  <%= f.submit %>
 
 <% end %>

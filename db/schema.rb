@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_110743) do
+ActiveRecord::Schema.define(version: 2021_01_27_070712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_110743) do
     t.integer "player_limit", default: 20
     t.boolean "is_team", default: true
     t.boolean "admin", default: false
+    t.text "bio"
   end
 
   create_table "users", force: :cascade do |t|

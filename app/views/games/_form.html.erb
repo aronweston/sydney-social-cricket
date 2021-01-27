@@ -3,11 +3,10 @@
     <%= f.label :date %>
     <%= f.datetime_select :date %>
 
-    <%= f.label :team1_id, "Home Team" %>
-    <%= f.select :team1_id, Team.pluck(:name, :id) %>
+    <%= f.hidden_field :team1_id, :value => @current_user.id %>
 
     <%= f.label :team2_id, "Away Team" %>
-    <%= f.select :team2_id, Team.pluck(:name, :id)  %>
+    <%= f.select :team2_id, Team.pluck(:name, :id) %>
 
     <%= f.label :ground_id, "Ground" %>
     <%= f.select :ground_id, Ground.pluck(:name, :id) %>

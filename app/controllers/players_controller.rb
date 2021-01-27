@@ -1,4 +1,6 @@
 class PlayersController < ApplicationController
+  before_action :check_for_player, :only => [:edit]
+  
   def index
     @players = Player.all
   end
@@ -36,6 +38,9 @@ class PlayersController < ApplicationController
   end 
 
   def update
+    player = Player.find params[:id] 
+    player.update add_profile_params
+    redirect_to player_path(player)
   end
 
   private

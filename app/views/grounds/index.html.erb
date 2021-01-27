@@ -2,6 +2,8 @@
 
 <% @grounds.each do |ground| %>
   <p><%= ground.name %></p>
-  <p><%= link_to("Edit Ground", edit_ground_path(ground)) %></p>
-  <%= button_to 'Delete Ground', ground, :method => 'delete' %>
+  <% if @current_user.admin? %>
+    <p><%= link_to("Edit Ground", edit_ground_path(ground)) %></p>
+    <%= button_to 'Delete Ground', ground, :method => 'delete' %>
+  <% end %>
 <% end %>

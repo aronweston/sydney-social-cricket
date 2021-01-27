@@ -1,6 +1,4 @@
-<h1>Almost there</h1>
-
-<%= form_for @player, url: player_update_profile_path(@player) do |f| %>
+<%= form_for @player do |f| %>
   
   <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
   <%= f.text_field :first_name %>
@@ -14,17 +12,14 @@
   <%= f.label :role %>
   <%= f.select(:role, ["Top Order Batsman", "Middle Order Batsman", "All Rounder", "Medium Pace Bowler", "Pace Bowler", "Fast Bowler", "Leg Spin Bowler", "Off Spin Bowler", "There for the tins", "Bat 11, don't bowl, terrible umpire", "Bantsmaster"], :include_blank => true, :required => true)%>
 
-  <%= f.label :bio %>
-  <%= f.text_area(:bio, :cols => 10, :rows => 10) %>
-
   <%= f.label :suburb %>
   <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
   
-  <%# f.label(:profile_image, "Profile Image")  %>
+  <%#f.label(:profile_image, "Profile Image")  %>
   <%# f.cl_image_tag(:profile_image) %>
 
   <%# f.label(:logo, "Banner Photo")  %>
-  <%#  f.cl_image_tag(:banner_photo) %>
+  <%# f.cl_image_tag(:banner_photo) %>
 
-<%= f.submit("Register") %>
+<%= f.submit("Update Profile") %>
 <% end %>

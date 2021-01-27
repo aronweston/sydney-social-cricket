@@ -6,5 +6,5 @@
     <p><%= player.team.name %></p>
     <%= link_to("Team", team_path(player.team_id)) %>
   <% end %>
-  <%= link_to("Profile", players_path(player))  %>
+  <%= link_to("Profile", player_path(player)) %>
 <% end %>

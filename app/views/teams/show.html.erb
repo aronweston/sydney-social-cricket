@@ -1,3 +1,42 @@
-<h1>Team Profile</h1>
+<h1><%= @team.name %></h1>
 
-<p><%= @team.name %></p>
+<p><%= @team.bio %></p>
+<p><%= @team.suburb %></p>
+<p><%= @team.grade %></p>
+
+<!--Games-->
+<% if @team.games.present? %>
+<p>Games</p>
+<ul>
+    <% @team.games.each do |game| %>
+      <li><%= game.team1.name %> vs <%= game.team2.name %></li>
+    <% end %>
+</ul>
+<% end %>
+
+<!--Players-->
+<% if @team.players.present? %>
+  <p>Players</p>
+  <ul>
+    <% @team.players.each do |player| %>
+      <li><%= player.first_name %> <%= player.last_name %></li>  
+    <% end %>
+  </ul>
+<% end %>
+
+<!--Player join the team-->
+<!---
+1. Is the user present, and a player/logged in
+2. Does the player have a team?  
+3. Does the team have space for the player? 
+-->
+<% if @current_user.present? && @current_user.user_role == "player" %>
+  <% if @current_user.team_id.nil? && @team.players.count < 20 %>
+    <%= link_to 'Join Team', join_team_path(@team) %>
+  <% end %>
+<% end %>
+
+<!--Only the owner can edit the page-->
+<% if @current_user.id == params[:id].to_i %>
+    <%= link_to("Edit Team Profile", edit_team_path(@team)) %>
+<% end %>

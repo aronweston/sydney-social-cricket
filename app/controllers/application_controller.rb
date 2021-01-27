@@ -27,6 +27,15 @@ class ApplicationController < ActionController::Base
         redirect_to root_path unless @current_user.present? && @current_user.user_role == "team"
     end
 
+    def check_for_team
+        redirect_to root_path unless @current_user.present? && @current_user.user_role == "team" &&  @current_user.id == params[:id].to_i
+    end
+
+    def check_for_player
+        # raise "hell"
+        redirect_to root_path unless @current_user.present? && @current_user.user_role == "player" && @current_user.id == params[:id].to_i
+    end 
+
     def check_for_admin
         redirect_to root_path unless @current_user.present? && @current_user.admin?
     end
