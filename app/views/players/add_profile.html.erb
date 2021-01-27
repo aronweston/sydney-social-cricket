@@ -1,6 +1,6 @@
 <h1>Almost there</h1>
 
-<%= form_for @player, url: player_update_profile_path(@player) do |f| %>
+<%= form_for (@player, url: player_update_profile_path(@player), :html => {:multipart => true}) do |f| %>
   
   <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
   <%= f.text_field :first_name %>
@@ -19,9 +19,7 @@
 
   <%= f.label :suburb %>
   <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
-  
-  <%# f.label(:profile_image, "Profile Image")  %>
-  <%# f.cl_image_tag(:profile_image) %>
+
 
   <%# f.label(:logo, "Banner Photo")  %>
   <%#  f.cl_image_tag(:banner_photo) %>

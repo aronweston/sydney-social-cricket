@@ -11,8 +11,8 @@ class PlayersController < ApplicationController
 
   def profile_update
     player = Player.find params[:id]
-    player.update add_profile_params
     session[:user_id] = player.id
+    player.update_attributes(add_profile_params)
     redirect_to root_path 
   end 
 
@@ -25,12 +25,18 @@ class PlayersController < ApplicationController
   end 
 
   def create
-    @player = Player.new player_params
-    if @player.save
-      redirect_to player_add_profile_path(@player)
-    else
-      render :new
+    player = Player.new player_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      player.profile_image = req["public_id"]
+      player.save
     end
+    redirect_to player_add_profile_path(player)
+    # if @player.save
+    #   redirect_to player_add_profile_path(@player)
+    # else
+    #   render :new
+    # end
   end
 
   def show
@@ -49,7 +55,7 @@ class PlayersController < ApplicationController
   end
 
   def add_profile_params
-    params.require(:player).permit(:first_name, :last_name, :role, :grade, :suburb, :bio, :profile_image, :banner_photo, :profile_image)
+    params.require(:player).permit(:first_name, :last_name, :role, :grade, :suburb, :bio)
   end 
 
 end
