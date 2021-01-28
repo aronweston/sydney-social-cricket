@@ -1,5 +1,24 @@
-<h1>All Games</h1>
 
-<% @games.each do |game| %>
-    <p><%= game.team1.name %> vs <%= game.team2.name %></p>  
-<% end %>
+<head><title>Games | SydCricket</title></head>
+
+<div class="container">
+  <div class="row">
+    <div class="card-grid">
+    <% @games.each do |game| %>
+      <div class="profile-card">
+        <div class="row card-image">
+            <%= cl_image_tag(game.ground.image, :class => "game-image") %>
+        </div>
+        <div class="row card-content">
+            <span class="title"><%= game.team1.name %> vs <%= game.team2.name %></span>
+            <p><%= game.date %></p>
+            <%= link_to("Get Directions", root_path, :class => "cta-btn red") %>
+        </div>
+        </div>    
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
+

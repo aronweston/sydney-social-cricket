@@ -1,20 +1,36 @@
-<h1>All Teams</h1>
+<head><title>Teams | SydCricket</title></head>
 
-<% @teams.each do |team| %>
-  <p><%= team.name %></p>
-  <% unless team.profile.nil? %>
-    <%= cl_image_tag(team.profile) %>
-  <% end %>
-  <ul>
-   <% team.players.each do |player| %>
-     <li><%= player.first_name %> <%= player.last_name %></li>
-     <% unless player.profile.nil? %>
-      <%= cl_image_tag(player.profile) %>
-     <% end %> 
-   <% end %>
-</ul>
-  <%= link_to("Team Profile", team_path(team))  %>
-<% end %>
+<div class="container index-template">
+  <div class="row">
+    <section class="side-menu">
+        <h1>Teams</h1>
+        <ul class="menu">
+          <li class="menu-item"><%= link_to "Go Home", root_path %></li>
+          <li class="menu-item"><%= link_to "Games", games_path %></li>
+          <li class="menu-item"><%= link_to "Teams", games_path %></li>
+        </ul>
+    </section>
 
+    <% @teams.each do |team| %>
+      <div class="profile-card">
+        <div class="row">
+          <div class="three columns">
+            <%= cl_image_tag(team.profile, :class => "profile-image") %>
+          </div>
+          <div class="nine columns">
+            <span class="title"><%= team.name %></span>
+             <p class="bio"><%= truncate team.bio, :length => 120 %></p>
+            <% if team.players.count < 20 %>
+              <p>Looking for players!</p>
+            <% end %>
+            <p>Total Players<%= team.players.count %>/20</p>
+            <p>Grade:<%= team.grade %></p>
+            <%= link_to("View Profile", team_path(team), :class => "cta-btn red") %>
+          </div>
+        </div>    
+      </div>
+    <% end %>
+  </div>
+</div>
 
 

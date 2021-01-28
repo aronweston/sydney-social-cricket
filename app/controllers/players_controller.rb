@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   before_action :check_for_player, :only => [:edit]
   
   def index
-    @players = Player.all
+    @players = Player.all.order("created_at DESC")
   end
 
   def add_profile

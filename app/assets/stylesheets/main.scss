@@ -85,6 +85,10 @@ textarea {
     flex-direction: column;
 }
 
+.full-height.landing {
+    height: 100vh;
+}
+
 #landing-container p {
     color: white;
     padding: 2rem;
@@ -190,6 +194,11 @@ ul.icons>li>a>i:hover {
     background-color: var(--input-grey);
 }
 
+.cta-btn.red{
+    background-color: var(--button-red);
+    color: white;
+}
+
 .cta-btn:hover {
     transform: translate(0px, -5px);
 }
@@ -238,30 +247,83 @@ ul.icons>li>a>i:hover {
     color: white
 }
 
+
+/*--------------------------------------------------------------
+# Index Page Template
+--------------------------------------------------------------*/
+
+.container.index-template {
+    max-width: 800px!important;
+}
+
+.side-menu {
+    display: inline-block;
+    position: fixed;
+    left: 50px;
+    width: 20%
+}
+
+.profile-card-container {
+    background-color: white;
+    margin: 10px 0px;
+}
+
+/* Card element */
+.profile-card {
+    flex: 1 1 250px;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 10px;
+    vertical-align: center;
+    padding: 0 20px 40px;
+    min-height: 220px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.profile-card .title,
+.side-menu h1 {
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.profile-card .bio {
+    word-wrap: break-word;
+}
+
+.profile-card img.profile-image {
+    width: 100%;
+    padding: 2rem 1rem;
+    border-radius: 250px;
+}
+
+.side-menu h1 {
+    font-size: 55px;
+    color: white;
+}
+
+.game-image {
+    width: 100%;
+    border-radius: none;
+}
+
+.row.card-image {
+    margin: 0px -20px;
+}
+
 /*--------------------------------------------------------------
 # Cards
 --------------------------------------------------------------*/
 
 /* Post grid flex wrapper */
-.post-grid {
+.card-grid {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
 }
 
-/* Card element */
-.post-card {
-    flex: 1 1 250px;
-    flex-direction: column;
-    overflow: hidden;
-    margin: 10px;
-    padding: 0 20px 40px;
-    min-height: 220px;
-    background-color: #fff;
-    border-radius: 4px;
-    background-size: cover;
-}
+
 
 /* .post-card:hover {
     transform: translateX(10px);
@@ -287,10 +349,7 @@ ul.icons>li>a>i:hover {
     color: black;
 }
 
-.post-content .title {
-    font-size: 25px;
-    color: red;
-}
+
 
 
 

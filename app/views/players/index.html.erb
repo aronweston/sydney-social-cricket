@@ -1,11 +1,35 @@
-<h1>Players</h1>
+<div class="container index-template">
+  <div class="row">
+    <section class="side-menu">
+        <h1>Players</h1>
+        <ul class="menu">
+          <li class="menu-item"><%= link_to "Go Home", root_path %></li>
+          <li class="menu-item"><%= link_to "Games", games_path %></li>
+          <li class="menu-item"><%= link_to "Teams", games_path %></li>
+        </ul>
+    </section>
 
-<% @players.each do |player| %>
-  <p><%= player.first_name %> <%= player.last_name %></p>
-  <%= cl_image_tag(player.profile) %>
-  <% unless player.team.nil? %>
-    <p><%= player.team.name %></p>
-    <%= link_to("Team", team_path(player.team_id)) %>
-  <% end %>
-  <%= link_to("Profile", player_path(player)) %>
-<% end %>
+    <% @players.each do |player| %>
+      <div class="profile-card">
+        <div class="row">
+          <div class="three columns">
+            <%= cl_image_tag(player.profile, :class => "profile-image") %>
+          </div>
+          <div class="nine columns">
+            <span class="title"><%= player.first_name %> <%= player.last_name %></span>
+            <% if player.team_id.nil?  %>
+              <p>Looking for a team!</p>
+            <% end %>
+            <p>Grade:<%= player.grade %></p>
+            <p class="bio"><%= truncate player.bio, :length => 120 %></p>
+            <%= link_to("View Profile", player_path(player), :class => "cta-btn red") %>
+          </div>
+        </div>    
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+   
+            
