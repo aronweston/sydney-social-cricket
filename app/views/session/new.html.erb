@@ -1,20 +1,35 @@
-<h1>Login</h1>
-<% if flash[:error].present? %>
-    <p class="error">
-        <%= flash[:error] %>
-    </p>
-<% end %>
+<head>
+    <title> Login | Syd Cricket </title>
+</head>
 
-<%= form_tag login_path do %>
+<div class="container center full-height">
+  
+  <div class="sign-up">
+    <h1>Login</h1>
+    <% if flash[:error].present? %>
+        <p class="error">
+            <%= flash[:error] %>
+        </p>
+    <% end %>
 
-    <%= label_tag :email %>
-    <%= email_field_tag :email %>
+    <%= form_tag login_path do %>
 
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+        <%= label_tag(:email, nil, :hidden => true)%>
+        <%= email_field_tag(:email,nil,:placeholder => "Email Address")%>
 
-    <%= submit_tag("Login") %>
+        <%= label_tag(:password, nil, :hidden => true) %>
+        <%= password_field_tag(:password, nil, :placeholder => "Email Address")%>
 
-<% end %>
+        <%= submit_tag "Login", :class => "u-full-width" %>
 
-<%= button_to "Login with Google", '/auth/google_oauth2' %>
+    <% end %>
+
+    <%= button_to "/auth/google_oauth2", :id => "google-btn", :class => " button grey" do %> 
+      <i id="g-icon" class="fa fa-google"></i>
+    <% end %>
+  </div>
+</div>
+
+<div class="wicket">
+  <%= image_tag "wicket.svg" %>
+</div>

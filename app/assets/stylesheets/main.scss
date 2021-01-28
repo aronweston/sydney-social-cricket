@@ -79,7 +79,7 @@ textarea {
 --------------------------------------------------------------*/
 
 .full-height {
-    height: 100vh;
+    height: 65vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -102,6 +102,7 @@ form.new_player {
 }
 
 .wicket {
+    width: 100%;
     position: fixed;
     bottom: 0;
     margin-bottom: -6px;
@@ -159,6 +160,7 @@ ul.icons {
 
 ul.icons>li {
     display: inline-block;
+    vertical-align: middle;
 }
 
 .icons li>a>i {
@@ -174,6 +176,67 @@ ul.icons>li>a>i:hover {
     transform: translate(0px, -5px);
 }
 
+.cta-btn {
+    padding: 10px 50px;
+    background: white;
+    color: black;
+    font-weight: 700;
+    border-radius: 2px;
+    margin-right: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.cta-btn.grey {
+    background-color: var(--input-grey);
+}
+
+.cta-btn:hover {
+    transform: translate(0px, -5px);
+}
+
+/*--------------------------------------------------------------
+# Player Profile Page
+--------------------------------------------------------------*/
+
+.container.profile {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.image-banner {
+    height: 45vh;
+    display: flex;
+    width: 100%;
+}
+
+.image-banner img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.profile-section {
+    margin-top: 20px;
+    background-color: white;
+
+}
+
+.profile-image {
+    width: 100%;
+    border-radius: 200px;
+}
+
+.profile-info p {
+    word-wrap: break-word;
+}
+
+.profile-info {
+    color: white;
+}
+
+.profile-info h1 {
+    font-weight: 800;
+    color: white
+}
 
 /*--------------------------------------------------------------
 # Cards
@@ -229,6 +292,10 @@ ul.icons>li>a>i:hover {
     color: red;
 }
 
+
+
+
+
 /*--------------------------------------------------------------
 # Show page
 --------------------------------------------------------------*/
@@ -269,14 +336,66 @@ img.product-image {
     text-align: justify;
 }
 
+
 /*--------------------------------------------------------------
-# Show page
+## Hamburger & FullScreen Menu
 --------------------------------------------------------------*/
 
-footer {
-    margin-top: 2rem;
+/*/Main Overlay/*/
+.nav-overlay {
+    position: fixed;
+    height: 0%;
+    opacity: 0;
+    width: 100%;
+    z-index: 9000;
+    left: 0;
+    top: 0;
+    background-color: var(--bg-gold);
+    overflow-y: hidden;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
 }
 
-a.footer-link {
-    padding-right: 1rem;
+.nav-overlay.visible {
+    opacity: 1;
+    height: 100vh;
+    margin: 0;
+}
+
+.nav-overlay-content {
+    position: relative;
+    top: 20%;
+    width: 100%;
+    text-align: left;
+    margin-top: 30px;
+}
+
+/* The navigation links inside the overlay /*/
+.nav-overlay a {
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 80px;
+    line-height: 50px;
+    font-weight: 900;
+    display: block;
+    transition: 0.3s;
+}
+
+.nav-overlay a.red-text {
+    color: var(--button-red);
+}
+
+/* When you mouse over the navigation links, change their color */
+.nav-overlay a:hover,
+.nav-overlay a:focus {
+    color: var(--pinkaccent);
+}
+
+/* Position the close button (top right corner) */
+.nav-overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
 }

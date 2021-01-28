@@ -2,10 +2,44 @@
   <title><%= @player.first_name %> <%= @player.last_name %> | SydCricket</title>
 </head>
 
-<h1><%= @player.first_name %> <%= @player.last_name %></h1>
 
-<%= cl_image_tag(@player.profile) %>
-<%= cl_image_tag(@player.banner) %>
+<div class="row image-banner">
+  <%= cl_image_tag(@player.banner) %>
+</div>
+
+
+<div class="container profile">
+  <div class="three columns">
+    <div class="profile-info">
+      <%= cl_image_tag(@player.profile, :class => "profile-image") %>
+      <h1><%= @player.first_name %> <%= @player.last_name %></h1>
+      <p><%= @player.bio %></p>
+      <p>Role: <%= @player.role %></p>
+      <p>Grade: <%= @player.grade %></p>
+
+      <% if @current_user.id == params[:id].to_i %>
+        <%= link_to("Edit your profile", edit_player_path(@player), :class=>"cta-btn") %>
+        <% unless @player.team.nil? %>
+          <%= link_to("Leave Team", leave_team_path(@player.team), :class=>"cta-btn grey") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="nine columns">
+    <div class="profile-section">
+      <span>Testy test</span>
+      <% unless @player.team.nil? %>
+        <h2><%= @player.team.name %></h2>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
 
 <% unless @player.team.nil? %>
 <p><%= @player.team.name %></p>
@@ -28,14 +62,5 @@
 </ul>
 <% end %>
 
-<p><%= @player.role %></p>
-<p><%= @player.suburb %></p>
-<p><%= @player.bio %></p>
-<p><%= @player.grade %></p>
 
-<% if @current_user.id == params[:id].to_i %>
-<%= link_to("Edit Profile", edit_player_path(@player)) %>
-<% unless @player.team.nil? %>
-<%= link_to("Leave Team", leave_team_path(@player.team)) %>
-<% end %>
-<% end %>
+

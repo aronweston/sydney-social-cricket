@@ -11,6 +11,24 @@
   <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
   <%= javascript_include_tag "application", 'data-turbolinks-track': "reload" %>
   <%= cloudinary_js_config %>
+  <script>
+    $(document).ready(function () {
+    
+      //Open Nav
+
+
+      $("#menu").on("click", function () {
+        $(".nav-overlay").toggleClass("visible");
+      });
+      //Close Nav
+      $(".closebtn").on("click", function () {
+        $(".nav-overlay").toggleClass("visible");
+      });
+      
+    });
+  
+  </script>
+
 </head>
 
 
@@ -18,69 +36,79 @@
 <body>
 <% unless controller_name == "pages" && ["landing"].include?(action_name) || controller_name == "player" && ["new"].include?(action_name) %>
   <nav class="nav">
-    <!--Logo-->
+    <!--Logo -->
     <%= link_to root_path do %>
       <%= image_tag("logo.svg", :class => "nav-logo") %>
     <% end %>
 
-    <!-- LOGGED IN USER -->
-    <% if @current_user.present? %>
-      <!-- Admin -->
-      <% if @current_user.admin? %>
-        <%= link_to "Users", users_path %>
-        <%= link_to "Create a ground", new_ground_path %>
-      <% end %>
-      <!-- Everyone -->
-      <ul class="icons">
-      <li><i class="far fa-compass"></i></li>
-      </ul>
-      <%= link_to "Teams", teams_path %>
-      <%= link_to "Players", players_path %>
-      <%= link_to "Grounds", grounds_path %>
-      <%= link_to "Games", games_path %>
-      
-      <!-- Teams -->
-      <% if @current_user.user_role == "team" %>
-          <%= link_to("Your Profile", team_path(@current_user)) %>
-          <%= link_to("Create a game", new_game_path) %>
-          <%= link_to "Logout #{@current_user.name}", login_path, :method => "delete" %>
-      <!-- Players -->
-      <% else %>
-        <ul class="icons">
-          <li> 
-            <%= link_to player_path(@current_user) do %>
-              <i class="far fa-user-circle"></i>
+    <!-- Nav Overlay -->  
+      <div class="nav-overlay">
+        <a href="javascript:void(0)" class="closebtn">×</a> 
+        <div class="nav-overlay-content">
+          <div class="menu-wrapper">
+            <%= link_to "Teams", teams_path %>
+            <%= link_to "Players", players_path %>
+            <%= link_to "Grounds", grounds_path %>
+            <%= link_to "Games", games_path %>
+            <% if @current_user.present? %>
+              <!-- Admin -->
+              <% if @current_user.admin? %>
+                <%= link_to "Create a ground", new_ground_path, :class => "red-text" %>
+                <%= link_to "Users", users_path, :class => "red-text" %>
+              <% end %>
+              <% if @current_user.user_role == "team" %>
+                <%= link_to("Create a game", new_game_path, :class => "red-text") %>
+              <% end %>
+              <% if @current_user.user_role == "player" %>
+                <%= link_to("Join a team", teams_path, :class => "red-text") %>
+                <%= link_to("View profile", players_path(@current_user), :class => "red-text") %>
+              <% end %>
             <% end %>
-          </li>
-          <li>
-            <%= link_to login_path, :method => "delete" do %>
-              <i class="fas fa-sign-out-alt"></i>
-            <% end %>          
-          </li>
-        </ul>
-      <% end %>
-    <!-- LOGGED OUT USER -->
-    <% else %>
-      <ul class="icons">
-        <li >
-          <%= link_to new_player_path do %>
-            <i class="fas fa-user-plus"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_team_path do %>
-            <i class="fas fa-users"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to login_path do %>
-            <i class="fas fa-sign-in-alt"></i>
-          <% end %>
-        </li>
-      </ul> 
-    <% end %>
-  </nav>
+          </div>
+        </div>
+      </div>
+  
 <% end %>
+
+
+  <!-- ICONS -->
+  <ul class="icons">
+    <% unless @current_user.present? %>
+    <li><%= link_to "Join", new_player_path, :class=>"cta-btn" %></li>
+    <li><%= link_to "New Team", new_team_path, :class=>"cta-btn" %></li>
+    <% end  %>
+    <li><a id="menu"><i class="far fa-compass"></i></a></li>
+    <% if @current_user.present? %>
+      <!--Change Player/Team routes for user profiles-->    
+      <% if @current_user.user_role == "player" %>
+        <li>
+          <%= link_to player_path(@current_user) do %>
+            <i class="far fa-user-circle"></i>
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to team_path(@current_user) do %>
+            <i class="far fa-user-circle"></i>
+          <% end %>
+        </li>
+      <% end %>
+      <!--Change Login/Logout-->    
+      <li>
+        <%= link_to login_path, :method => "delete" do %>
+          <i class="fas fa-sign-out-alt"></i>
+        <% end %>          
+      </li>
+      <% else %>
+      <li>
+        <%= link_to login_path do %>
+          <i class="fas fa-sign-in-alt"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul> 
+  </nav>
+
 
 
   <%= yield %>
