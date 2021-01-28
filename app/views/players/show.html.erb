@@ -4,7 +4,8 @@
 
 <h1><%= @player.first_name %> <%= @player.last_name %></h1>
 
-<%= cl_image_tag(@player.profile_image) %>
+<%= cl_image_tag(@player.profile) %>
+<%= cl_image_tag(@player.banner) %>
 
 <% unless @player.team.nil? %>
 <p><%= @player.team.name %></p>

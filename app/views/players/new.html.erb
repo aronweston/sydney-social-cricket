@@ -18,9 +18,6 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
-  <%= f.label :profile_image %>
-  <%= f.cl_image_upload :profile_image %>
-
   <%= f.label :password %>
   <%= f.password_field :password, :placeholder => "6 to 20 characters" %>
   
@@ -30,4 +27,4 @@
   <%= f.submit("Register") %>
 <% end %>
 
-<%# button_to "Log In with Google", google_login_path %>
+<%= button_to "Sign up with Google", '/auth/google_oauth2' %>

@@ -1,13 +1,16 @@
 <h1>Almost there</h1>
 
 <%= form_for @player, url: player_update_profile_path(@player), :html => {:multipart => true} do |f| %>
-  
+
+  <% unless @player.uid.present? %>  
   <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
   <%= f.text_field :first_name %>
   
   <%= f.label :last_name, "Last Name", :required => true %>
   <%= f.text_field :last_name %>
-  
+
+  <% end %>
+
   <%= f.label :grade %>
   <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
   
@@ -20,9 +23,11 @@
   <%= f.label :suburb %>
   <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
 
+  <%= f.label :profile, "Profile Photo" %>
+  <%= f.file_field :profile %>
 
-  <%# f.label(:logo, "Banner Photo")  %>
-  <%#  f.cl_image_tag(:banner_photo) %>
+  <%= f.label :banner, "Banner Photo" %>
+  <%= f.file_field :banner %>
 
 <%= f.submit("Register") %>
 <% end %>

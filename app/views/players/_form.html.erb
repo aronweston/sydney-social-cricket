@@ -1,11 +1,15 @@
+
+
 <%= form_for @player do |f| %>
   
-  <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
-  <%= f.text_field :first_name %>
   
-  <%= f.label :last_name, "Last Name", :required => true %>
-  <%= f.text_field :last_name %>
-  
+    <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
+    <%= f.text_field :first_name %>
+    
+    <%= f.label :last_name, "Last Name", :required => true %>
+    <%= f.text_field :last_name %>
+
+
   <%= f.label :grade %>
   <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
   

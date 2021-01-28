@@ -1,7 +1,8 @@
 <h1>All Grounds</h1>
 
 <% @grounds.each do |ground| %>
-  <p><%= ground.name %></p>
+  <%= link_to ground.name, ground_path(ground) %>
+  <%= cl_image_tag(ground.image) %>
   <% if @current_user.admin? %>
     <p><%= link_to("Edit Ground", edit_ground_path(ground)) %></p>
     <%= button_to 'Delete Ground', ground, :method => 'delete' %>

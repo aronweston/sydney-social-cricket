@@ -5,9 +5,6 @@ class TeamsController < ApplicationController
     @team = Team.find params[:id]
     @current_user.update_attribute(:team_id, @team.id)
     redirect_to team_path(@team)
-    # Get the team id and the player session id
-    # bind the team.id to the player.team.id
-    # redirect back to the player profile
   end
 
   def leave
@@ -21,9 +18,24 @@ class TeamsController < ApplicationController
 
   def profile_update
     team = Team.find params[:id]
-    team.update add_profile_params
-    session[:user_id] = team.id
-    redirect_to root_path
+    if params[:team][:profile].present?
+      profile = Cloudinary::Uploader.upload(params[:team][:profile])
+      team.profile = profile["public_id"]
+    end
+
+    if params[:team][:banner].present?
+      banner = Cloudinary::Uploader.upload(params[:team][:banner])
+      team.banner = banner["public_id"]
+    end
+
+    team.update_attributes(add_profile_params)
+    team.save
+    if team.save
+      session[:user_id] = team.id
+      redirect_to root_path
+    else 
+      render :add_profile
+    end 
   end 
 
   def index

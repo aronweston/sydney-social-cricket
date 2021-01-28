@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root :to => "pages#home"
 
-  get '/auth/google_oauth2/callback' => 'session#omniauth'
-
   resources :players, :except => [:destroy]
   get '/players/:id/add_profile' => "players#add_profile", :as => "player_add_profile"
   patch '/players/:id/add_profile' => "players#profile_update", :as => "player_update_profile"
@@ -22,6 +20,7 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
+  get '/auth/google_oauth2/callback' => 'session#omniauth'
 
   
 

@@ -1,0 +1,10 @@
+<h1><%= @ground.name %></h1>
+<%= cl_image_tag(@ground.image) %>
+<%= @ground.address %>
+<%= @ground.google_map %>
+
+
+<% if @current_user.admin? %>
+    <p><%= link_to("Edit Ground", edit_ground_path(@ground)) %></p>
+    <%= button_to 'Delete Ground', ground, :method => 'delete' %>
+<% end %>

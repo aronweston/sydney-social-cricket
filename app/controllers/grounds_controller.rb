@@ -18,8 +18,12 @@ class GroundsController < ApplicationController
   end 
 
   def create
-    @ground = Ground.new ground_params
-    if @ground.save
+    ground = Ground.new ground_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      ground.image = req["public_id"]
+    end
+    if ground.save
       redirect_to grounds_path
     else
       render :new
@@ -28,8 +32,16 @@ class GroundsController < ApplicationController
 
   def update
     ground = Ground.find params[:id]
-    ground.update ground_params
-    redirect_to grounds_path
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      ground.image = req["public_id"]
+    end
+    ground.update_attributes ground_params
+    if ground.save
+      redirect_to grounds_path
+    else
+      render :new
+    end
   end 
 
   def destroy

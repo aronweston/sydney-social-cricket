@@ -2,9 +2,15 @@
 
 <% @teams.each do |team| %>
   <p><%= team.name %></p>
+  <% unless team.profile.nil? %>
+    <%= cl_image_tag(team.profile) %>
+  <% end %>
   <ul>
    <% team.players.each do |player| %>
-     <li><%= player.first_name %> <%= player.last_name %></li> 
+     <li><%= player.first_name %> <%= player.last_name %></li>
+     <% unless player.profile.nil? %>
+      <%= cl_image_tag(player.profile) %>
+     <% end %> 
    <% end %>
 </ul>
   <%= link_to("Team Profile", team_path(team))  %>

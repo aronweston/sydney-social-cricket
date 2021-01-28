@@ -11,9 +11,25 @@ class PlayersController < ApplicationController
 
   def profile_update
     player = Player.find params[:id]
-    session[:user_id] = player.id
+    if params[:player][:profile].present?
+      profile = Cloudinary::Uploader.upload(params[:player][:profile])
+      player.profile = profile["public_id"]
+      
+    end
+
+    if params[:player][:banner].present?
+      banner = Cloudinary::Uploader.upload(params[:player][:banner])
+      player.banner = banner["public_id"]
+    end
+
     player.update_attributes(add_profile_params)
-    redirect_to root_path 
+    player.save
+    if player.save
+      session[:user_id] = player.id
+      redirect_to root_path
+    else 
+      render :add_profile
+    end 
   end 
 
   def new 
@@ -21,16 +37,10 @@ class PlayersController < ApplicationController
   end
 
   def create
-    player = Player.create(player_params)
-    if params[:file].present?
-      req = Cloudinary::Uploader.upload(params[:file])
-      player.profile_image = req["public_id"]
-    end
-    
-    if player.save
-      redirect_to player_add_profile_path(player)
+    @player = Player.create(player_params)
+    if @player.save
+      redirect_to player_add_profile_path(@player)
     else 
-      raise "hell"
       render :new
     end 
   end

@@ -1,5 +1,8 @@
 <h1><%= @team.name %></h1>
 
+<%= cl_image_tag(@team.profile) %>
+<%= cl_image_tag(@team.banner) %>
+
 <p><%= @team.bio %></p>
 <p><%= @team.suburb %></p>
 <p><%= @team.grade %></p>

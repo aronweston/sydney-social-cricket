@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_155920) do
+ActiveRecord::Schema.define(version: 2021_01_28_023900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_155920) do
     t.string "grade"
     t.integer "suburb"
     t.text "bio"
-    t.text "banner_photo"
     t.text "email"
     t.string "password_digest"
     t.integer "team_id"
@@ -48,9 +47,11 @@ ActiveRecord::Schema.define(version: 2021_01_27_155920) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_role", default: "player"
-    t.string "profile_image"
     t.string "uid"
     t.string "provider"
+    t.text "images", default: [], array: true
+    t.string "profile"
+    t.string "banner"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -68,6 +69,8 @@ ActiveRecord::Schema.define(version: 2021_01_27_155920) do
     t.boolean "is_team", default: true
     t.boolean "admin", default: false
     t.text "bio"
+    t.string "profile"
+    t.string "banner"
   end
 
   create_table "users", force: :cascade do |t|
