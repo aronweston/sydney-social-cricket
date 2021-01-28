@@ -16,28 +16,28 @@ class PlayersController < ApplicationController
     redirect_to root_path 
   end 
 
-  def new
+  def new 
     @player = Player.new
+  end
+
+  def create
+    player = Player.create(player_params)
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      player.profile_image = req["public_id"]
+    end
+    
+    if player.save
+      redirect_to player_add_profile_path(player)
+    else 
+      raise "hell"
+      render :new
+    end 
   end
 
   def edit 
     @player = Player.find params[:id]
   end 
-
-  def create
-    player = Player.new player_params
-    if params[:file].present?
-      req = Cloudinary::Uploader.upload(params[:file])
-      player.profile_image = req["public_id"]
-      player.save
-    end
-    redirect_to player_add_profile_path(player)
-    # if @player.save
-    #   redirect_to player_add_profile_path(@player)
-    # else
-    #   render :new
-    # end
-  end
 
   def show
     @player = Player.find params[:id]

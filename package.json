@@ -1,5 +1,10 @@
 {
   "name": "syd_cricket",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "https://github.com/rails/webpacker.git",
+    "autoprefixer": "^10.2.3",
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2"
+  }
 }

@@ -13,13 +13,13 @@
     <% end %>
 <% end %>
 
-<%= form_for (@player, :html => {:multipart => true}) do |f| %>
+<%= form_for(@player, :html => {:multipart => true}) do |f| %>
   
   <%= f.label :email %>
   <%= f.email_field :email %>
 
-  <%= f.label(:profile_image, "Profile Image")  %>
-  <%= f.cl_image_upload(:profile_image) %>
+  <%= f.label :profile_image %>
+  <%= f.cl_image_upload :profile_image %>
 
   <%= f.label :password %>
   <%= f.password_field :password, :placeholder => "6 to 20 characters" %>
@@ -27,5 +27,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
-    <%= f.submit("Register") %>
+  <%= f.submit("Register") %>
 <% end %>
+
+<%# button_to "Log In with Google", google_login_path %>

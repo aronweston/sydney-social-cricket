@@ -1,2 +1,0 @@
-      invoke  active_record
-      create    db/migrate/20210126052655_add_player_limit_to_teams.rb

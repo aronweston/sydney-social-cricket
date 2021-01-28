@@ -11,4 +11,8 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require cloudinary
 //= require_tree .
+
+
