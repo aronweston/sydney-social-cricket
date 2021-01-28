@@ -17,7 +17,6 @@
     <% end %>
 
     <%= form_for @player, url: player_update_profile_path(@player), :class => "u-full-width", :html => {:multipart => true} do |f| %>
-    <% unless @player.uid.present? %>
     <div class="row">
       <div class="six columns">
         <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
@@ -28,7 +27,6 @@
         <%= f.text_field :last_name, :class => "u-full-width" %>
       </div>
     </div>
-    <% end %>
     <div class="row">
       <div class="four columns">
         <%= f.label :grade %>
