@@ -1,30 +1,45 @@
+<head>
+  <title> Player Sign Up | Syd Cricket </title>
+</head>
 
-<head><title>Player Sign Up</title></head>
-
-<h1>Player Sign Up</h1>
-
-<% if @player.errors.any? %>
+<div class="container center full-height">
+  
+  <div class="sign-up">
+    <h1>Player Sign Up</h1>
+    <% if @player.errors.any? %>
     <% @player.errors.full_messages.each do |msg| %>
-      <div class="error-container">
-        <ul>
-            <li><%= msg %></li>
-        </ul>
-      </div>
+    <div class="errors u-mid-width center">
+      <ol>
+        <li><%= msg %></li>
+      </ol>
+    </div>
     <% end %>
-<% end %>
+    <% end %>
 
-<%= form_for(@player, :html => {:multipart => true}) do |f| %>
+    <%= form_for(@player, :class => "u-mid-width", :html => { :multipart => true }) do |f| %>
   
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+        <%= f.label :email, :hidden => true %>
+        <%= f.email_field :email, :placeholder => "Email Address", :class => "u-mid-width" %>
+   
+        <%= f.label :password, :hidden => true %>
+        <%= f.password_field :password, :placeholder => "Password (6 to 20 characters)", :class => "u-mid-width" %>
+        <br>
+    
+        <%= f.label :password_confirmation, :hidden => true %>
+        <%= f.password_field :password_confirmation, :placeholder => "Confirm your password", :class => "u-mid-width" %>
+   
+      <%= f.submit("Get Started", :class => "gold u-full-width") %>
+    <% end %>
+    
+    <%= button_to "/auth/google_oauth2", :id => "google-btn", :class => "button grey" do %> 
+      <i id="g-icon" class="fa fa-google"></i>
+    <% end %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, :placeholder => "6 to 20 characters" %>
+  </div>
   
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+</div>
 
-  <%= f.submit("Register") %>
-<% end %>
 
-<%= button_to "Sign up with Google", '/auth/google_oauth2' %>
+<div class="wicket">
+  <%= image_tag "wicket.svg" %>
+</div>

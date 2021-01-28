@@ -1,25 +1,41 @@
-<h1>New Team</h1>
+<head>
+  <title> Team Sign Up | Syd Cricket </title>
+</head>
 
-<% if @team.errors.any? %>
+<div class="container center full-height">
+
+  <div class="sign-up">
+    <h1>Register a team</h1>
+    <% if @team.errors.any? %>
     <% @team.errors.full_messages.each do |msg| %>
-      <div class="error-container">
-        <ul>
-            <li><%= msg %></li>
-        </ul>
-      </div>
+    <div class="errors u-mid-width center">
+      <ol>
+        <li><%= msg %></li>
+      </ol>
+    </div>
     <% end %>
-<% end %>
+    <% end %>
 
-<%= form_for @team do |f| %>
-  
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+    <%= form_for(@team, :class => "u-mid-width", :html => { :multipart => true }) do |f| %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+    <%= f.label :email, :hidden => true %>
+    <%= f.email_field :email, :placeholder => "Email Address", :class => "u-mid-width" %>
 
-    <%= f.submit("Register") %>
-<% end %>
+    <%= f.label :password, :hidden => true %>
+    <%= f.password_field :password, :placeholder => "Password (6 to 20 characters)", :class => "u-mid-width" %>
+    <br>
+
+    <%= f.label :password_confirmation, :hidden => true %>
+    <%= f.password_field :password_confirmation, :placeholder => "Confirm your password", :class => "u-mid-width" %>
+
+    <%= f.submit("Get Started", :class => "gold u-mid-width") %>
+    <% end %>
+
+  </div>
+
+</div>
+
+
+<div class="wicket">
+  <%= image_tag "wicket.svg" %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_023900) do
+ActiveRecord::Schema.define(version: 2021_01_28_043129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2021_01_28_023900) do
     t.string "user_role", default: "player"
     t.string "uid"
     t.string "provider"
-    t.text "images", default: [], array: true
     t.string "profile"
     t.string "banner"
   end

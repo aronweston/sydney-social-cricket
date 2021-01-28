@@ -1,33 +1,66 @@
-<h1>Almost there</h1>
+<head>
+  <title> Create Your Profile | Syd Cricket </title>
+</head>
 
-<%= form_for @player, url: player_update_profile_path(@player), :html => {:multipart => true} do |f| %>
+<div class="container full-height">
 
-  <% unless @player.uid.present? %>  
-  <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
-  <%= f.text_field :first_name %>
-  
-  <%= f.label :last_name, "Last Name", :required => true %>
-  <%= f.text_field :last_name %>
+  <div class="sign-up">
+    <h1>Create Profile</h1>
+    <% if @player.errors.any? %>
+    <% @player.errors.full_messages.each do |msg| %>
+    <div class="errors u-full-width center">
+      <ol>
+        <li><%= msg %></li>
+      </ol>
+    </div>
+    <% end %>
+    <% end %>
 
-  <% end %>
-
-  <%= f.label :grade %>
-  <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
-  
-  <%= f.label :role %>
-  <%= f.select(:role, ["Top Order Batsman", "Middle Order Batsman", "All Rounder", "Medium Pace Bowler", "Pace Bowler", "Fast Bowler", "Leg Spin Bowler", "Off Spin Bowler", "There for the tins", "Bat 11, don't bowl, terrible umpire", "Bantsmaster"], :include_blank => true, :required => true)%>
-
-  <%= f.label :bio %>
-  <%= f.text_area(:bio, :cols => 10, :rows => 10) %>
-
-  <%= f.label :suburb %>
-  <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
-
-  <%= f.label :profile, "Profile Photo" %>
-  <%= f.file_field :profile %>
-
-  <%= f.label :banner, "Banner Photo" %>
-  <%= f.file_field :banner %>
-
-<%= f.submit("Register") %>
-<% end %>
+    <%= form_for @player, url: player_update_profile_path(@player), :class => "u-full-width", :html => {:multipart => true} do |f| %>
+    <% unless @player.uid.present? %>
+    <div class="row">
+      <div class="six columns">
+        <%= f.label :first_name, "First Name", :autofocus => true, :required => true %>
+        <%= f.text_field :first_name, :class => "u-full-width"  %>
+      </div>
+      <div class="six columns">
+        <%= f.label :last_name, "Last Name", :required => true %>
+        <%= f.text_field :last_name, :class => "u-full-width" %>
+      </div>
+    </div>
+    <% end %>
+    <div class="row">
+      <div class="four columns">
+        <%= f.label :grade %>
+        <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true, :class => "")%>
+      </div>
+      <div class="four columns">
+        <%= f.label :suburb %>
+        <%= f.number_field :suburb, :placeholder => "Suburb (ie. 2066)", :class => "" %>
+      </div>
+      <div class="four columns">
+        <%= f.label :role %>
+        <%= f.select(:role, ["Top Order Batsman", "Middle Order Batsman", "All Rounder", "Medium Pace Bowler", "Pace Bowler", "Fast Bowler", "Leg Spin Bowler", "Off Spin Bowler", "There for the tins", "Bat 11, don't bowl, terrible umpire", "Bantsmaster"], :include_blank => true, :required => true, :class => "u-mid-width")%>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.label :bio %>
+      <%= f.text_area(:bio, :cols => 10, :rows => 10, :class => "u-full-width") %>
+    </div>
+    <div class="row">
+      <div class="six columns">
+        <%= f.label :profile, "Profile Photo" %>
+        <%= f.file_field :profile, :class => "u-full-width" %>
+      </div>
+      <div class="six columns">
+        <%= f.label :banner, "Banner Photo" %>
+        <%= f.file_field :banner, :class => "u-full-width" %>
+      </div>
+    </div>
+    <%= f.submit("Register", :class => "gold u-full-width") %>
+    <% end %>
+  </div>
+</div>
+<div class="wicket">
+  <%= image_tag "wicket.svg" %>
+</div>

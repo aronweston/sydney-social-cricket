@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %> 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= cloudinary_js_config %>
-  </head>
 
-  <body>
-    <nav>
-    <%= link_to 'Home', root_path %>
-    <%# User logged in %>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track': "reload" %>
+  <%= cloudinary_js_config %>
+</head>
+
+
+
+<body>
+<% unless controller_name == "pages" && ["landing"].include?(action_name) || controller_name == "player" && ["new"].include?(action_name) %>
+  <nav class="nav">
+    <!--Logo-->
+    <%= link_to root_path do %>
+      <%= image_tag("logo.svg", :class => "nav-logo") %>
+    <% end %>
+
+    <!-- LOGGED IN USER -->
     <% if @current_user.present? %>
-    <!-- Admin -->
+      <!-- Admin -->
       <% if @current_user.admin? %>
         <%= link_to "Users", users_path %>
         <%= link_to "Create a ground", new_ground_path %>
       <% end %>
       <!-- Everyone -->
+      <ul class="icons">
+      <li><i class="far fa-compass"></i></li>
+      </ul>
       <%= link_to "Teams", teams_path %>
       <%= link_to "Players", players_path %>
       <%= link_to "Grounds", grounds_path %>
@@ -29,20 +44,47 @@
           <%= link_to("Your Profile", team_path(@current_user)) %>
           <%= link_to("Create a game", new_game_path) %>
           <%= link_to "Logout #{@current_user.name}", login_path, :method => "delete" %>
+      <!-- Players -->
       <% else %>
-          <%= link_to("Your Profile", player_path(@current_user)) %>
-          <%= link_to "Logout #{@current_user.first_name}", login_path, :method => "delete" %>
+        <ul class="icons">
+          <li> 
+            <%= link_to player_path(@current_user) do %>
+              <i class="far fa-user-circle"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to login_path, :method => "delete" do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>          
+          </li>
+        </ul>
       <% end %>
-      
+    <!-- LOGGED OUT USER -->
     <% else %>
-      <%= link_to 'Player Sign Up', new_player_path %>
-      <%= link_to 'Team Sign Up', new_team_path %>
-      <%= link_to 'Login', login_path %>
+      <ul class="icons">
+        <li >
+          <%= link_to new_player_path do %>
+            <i class="fas fa-user-plus"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_team_path do %>
+            <i class="fas fa-users"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to login_path do %>
+            <i class="fas fa-sign-in-alt"></i>
+          <% end %>
+        </li>
+      </ul> 
     <% end %>
   </nav>
-    <%= yield %>
+<% end %>
 
 
-  <footer></footer>
-  </body>
+  <%= yield %>
+
+</body>
+
 </html>

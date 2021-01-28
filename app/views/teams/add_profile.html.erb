@@ -1,25 +1,55 @@
-<h1>Almost there</h1>
+<head>
+  <title> Create Team Profile | Syd Cricket </title>
+</head>
 
-<%= form_for @team, url: team_update_profile_path(@team) do |f| %>
+<div class="container full-height">
 
-  <%= f.label :name, "Team Name", :autofocus => true, :required => true %>
-  <%= f.text_field :name %>
-  
-  <%= f.label :grade %>
-  <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true)%>
+  <div class="sign-up">
+    <h1>Team Profile</h1>
+    <% if @team.errors.any? %>
+    <% @team.errors.full_messages.each do |msg| %>
+    <div class="errors u-full-width center">
+      <ol>
+        <li><%= msg %></li>
+      </ol>
+    </div>
+    <% end %>
+    <% end %>
 
-  <%= f.label :suburb %>
-  <%= f.number_field :suburb, :placeholder => "ie. 2066", :max => 5000, :min => 0 %>
-  
-  <%= f.label :bio %>
-  <%= f.text_area(:bio, :cols => 10, :rows => 10) %>
-  
-  <%= f.label :profile, "Team Photo" %>
-  <%= f.file_field :profile %>
+    <%= form_for @team, url: team_update_profile_path(@team), :class => "u-full-width", :html => {:multipart => true} do |f| %>
 
-  <%= f.label :banner, "Banner Photo" %>
-  <%= f.file_field :banner %>
+    <div class="row">
+      <div class="six columns">
+        <%= f.label "Team Name" %>
+        <%= f.text_field(:name, :required => true)%>
+      </div>
+      <div class="six columns">
+        <%= f.label :grade %>
+        <%= f.select(:grade, ["A", "B", "C", "D"], :include_blank => true, :required => true, :class => "")%>
+      </div>
+    </div>
 
-  <%= f.submit("Register") %>
+    <%= f.label :suburb %>
+    <%= f.number_field :suburb, :placeholder => "Suburb (ie. 2066)", :class => "" %>
 
-<% end %>
+    <%= f.label :bio %>
+    <%= f.text_area(:bio, :cols => 10, :rows => 10, :placeholder => "Tell us about your team. Who can smash the most tins before tea?", :class => "u-full-width") %>
+
+    <div class="row">
+      <div class="six columns">
+        <%= f.label :profile, "Profile Photo" %>
+        <%= f.file_field :profile, :class => "u-full-width" %>
+      </div>
+      <div class="six columns">
+        <%= f.label :banner, "Banner Photo" %>
+        <%= f.file_field :banner, :class => "u-full-width" %>
+      </div>
+    </div>
+    <%= f.submit("Register", :class => "gold u-full-width") %>
+    <% end %>
+  </div>
+
+</div>
+<div class="wicket">
+  <%= image_tag "wicket.svg" %>
+</div>

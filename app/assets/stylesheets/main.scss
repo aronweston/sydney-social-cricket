@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --bg-green: #60947E;
+    --bg-gold: #E3A300;
+    --button-red: #E64C3C;
+    --input-grey: #F5F5F5;
+}
+
+html {
+    background-color: var(--bg-green) !important;
+}
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.u-mid-width {
+    width: 80%;
+}
+
+textarea {
+    height: 100% !important;
+}
+
+.center {
+    vertical-align: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.grey {
+    background-color: var(--button-grey);
+}
+
+.red {
+    background-color: var(--button-red);
+}
+
+.gold {
+    background-color: var(--bg-gold);
+}
+
+.errors ol>li {
+    color: red;
+}
+
+.wide-button {
+    padding: 2rem;
+    border-radius: 4px;
+    width: 400px;
+    margin: 0 auto;
+    font-size: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.wide-button:hover {
+    transform: translate(0px, -5px);
+}
+
+
+#google-btn {
+    color: black;
+    font-weight: 500;
+    background-color: var(--input-grey);
+}
+
+#g-icon {
+    color: black;
+    font-size: 25px;
+}
+
+/*--------------------------------------------------------------
+# Landing Page
+--------------------------------------------------------------*/
+
+.full-height {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#landing-container p {
+    color: white;
+    padding: 2rem;
+    font-size: 20px;
+}
+
+
+/*--------------------------------------------------------------
+# Player Sign Up
+--------------------------------------------------------------*/
+
+form.new_player {
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.wicket {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: -6px;
+}
+
+.sign-up {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    border: 2px solid black;
+    width: 70%;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.sign-up h1 {
+    text-align: center;
+    font-weight: 900;
+}
+
+/*--------------------------------------------------------------
+# Form 
+--------------------------------------------------------------*/
+label {
+    color: rgb(34, 34, 34) !important;
+}
+
+form.edit_team {
+    margin-bottom: 0;
+}
+
+
+/*--------------------------------------------------------------
+# Application CSS & Globals 
+--------------------------------------------------------------*/
+
+// Nav bar flex element
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+// Logo Size
+.nav-logo {
+    width: 250px;
+}
+
+
+// Remove list from icons
+ul.icons {
+    list-style-type: none;
+}
+
+ul.icons>li {
+    display: inline-block;
+}
+
+.icons li>a>i {
+    font-size: 50px;
+    padding: 10px;
+}
+
+ul.icons>li>a>i {
+    transition: transform 0.2s ease-in-out;
+}
+
+ul.icons>li>a>i:hover {
+    transform: translate(0px, -5px);
+}
+
+
+/*--------------------------------------------------------------
+# Cards
+--------------------------------------------------------------*/
+
+/* Post grid flex wrapper */
+.post-grid {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+/* Card element */
+.post-card {
+    flex: 1 1 250px;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 10px;
+    padding: 0 20px 40px;
+    min-height: 220px;
+    background-color: #fff;
+    border-radius: 4px;
+    background-size: cover;
+}
+
+/* .post-card:hover {
+    transform: translateX(10px);
+} */
+
+// transition: transform 0.2s ease-in-out;
+
+/* Post image
+.post-image {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+} */
+
+/* Post content */
+.post-content {
+    padding: 20px 0px;
+}
+
+.post-content p {
+    color: black;
+}
+
+.post-content .title {
+    font-size: 25px;
+    color: red;
+}
+
+/*--------------------------------------------------------------
+# Show page
+--------------------------------------------------------------*/
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: white;
+}
+
+.hero-section span {
+    color: white;
+}
+
+a.buy-now,
+a.footer-link {
+    color: red;
+}
+
+.hero-section h1 {
+    color: white;
+    font-weight: 600;
+    text-align: left;
+}
+
+img.product-image {
+    height: 100vh;
+    margin-right: 2rem;
+}
+
+.text-section {
+    padding: 2rem 0;
+}
+
+.text-section p {
+    text-align: justify;
+}
+
+/*--------------------------------------------------------------
+# Show page
+--------------------------------------------------------------*/
+
+footer {
+    margin-top: 2rem;
+}
+
+a.footer-link {
+    padding-right: 1rem;
+}

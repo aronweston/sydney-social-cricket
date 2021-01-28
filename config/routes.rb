@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root :to => "pages#home"
+  get '/landing' => "pages#landing", :as => "landing"
+  get '/users' => "pages#users", :as => "users"
 
   resources :players, :except => [:destroy]
   get '/players/:id/add_profile' => "players#add_profile", :as => "player_add_profile"
@@ -15,13 +17,11 @@ Rails.application.routes.draw do
   resources :grounds
   resources :games, :except => [:destroy]
 
-  #Users
-  get '/users' => "pages#users", :as => "users"
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
   get '/auth/google_oauth2/callback' => 'session#omniauth'
 
-  
 
 end
