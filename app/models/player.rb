@@ -3,8 +3,7 @@ class Player < ApplicationRecord
     has_secure_password 
     
     validates :email, :uniqueness => true, :presence => true
-    # validates :password, length: { in: 7..20}
-    # validates :suburb, :length: { is: 4}
+    validates :password, length: { in: 7..20}
 
     #Create a user from Google OmniAuth
     def self.create_from_omniauth(auth)
