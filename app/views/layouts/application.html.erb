@@ -78,18 +78,18 @@
     <li><a id="menu"><i class="far fa-compass"></i></a></li>
     <% if @current_user.present? %>
       <!--Change Player/Team routes for user profiles-->    
-      <% if @current_user.user_role == "player" %>
-        <li>
-          <%= link_to player_path(@current_user) do %>
-            <i class="far fa-user-circle"></i>
-          <% end %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to team_path(@current_user) do %>
-            <i class="far fa-user-circle"></i>
-          <% end %>
-        </li>
+      <% if @current_user.user_role == "team" %>
+          <li>
+            <%= link_to team_path(@current_user) do %>
+              <i class="far fa-user-circle"></i>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to player_path(@current_user) do %>
+              <i class="far fa-user-circle"></i>
+            <% end %>
+          </li>
       <% end %>
       <!--Change Login/Logout-->    
       <li>
