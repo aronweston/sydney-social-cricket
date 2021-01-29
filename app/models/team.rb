@@ -1,6 +1,5 @@
 class Team < ApplicationRecord
     has_many :players
-    # validates :email, :uniqueness => true
     validates :password, length: { in: 7..20}
     validates :players, length: { maximum: 20 }
     has_secure_password
