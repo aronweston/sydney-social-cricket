@@ -13,7 +13,6 @@
   <%= cloudinary_js_config %>
   <script>
     $(document).ready(function () {
-    
       //Open Nav
       $("#menu").on("click", function () {
         $(".nav-overlay").toggleClass("visible");
@@ -22,15 +21,9 @@
       $(".closebtn").on("click", function () {
         $(".nav-overlay").toggleClass("visible");
       });
-      
     });
-  
   </script>
-
 </head>
-
-
-
 <body>
 <% unless controller_name == "pages" && ["landing"].include?(action_name) || controller_name == "player" && ["new"].include?(action_name) %>
   <nav class="nav">
@@ -65,10 +58,6 @@
           </div>
         </div>
       </div>
-  
-
-
-
   <!-- ICONS -->
   <ul class="icons">
     <% unless @current_user.present? %>
